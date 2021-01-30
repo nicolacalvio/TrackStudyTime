@@ -52,6 +52,8 @@ namespace TrackStudyTime
                     listBox1.Items.Add("#" + Convert.ToString(countPause) + " " + timeUtil.calcolaDiffTimePausa());
                 }
                 countPause++;
+                play.Enabled = false;
+                pause.Enabled = true;
                 
             }
             else
@@ -65,6 +67,19 @@ namespace TrackStudyTime
             actualSecs++;
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pasto_Click(object sender, EventArgs e)
+        {
+            play.Enabled = true;
+            pause.Enabled = false;
+            timer1.Stop();
+            timer2.Stop();
+        }
+
         private void pause_Click(object sender, EventArgs e)
         {
             timer1.Stop();
@@ -75,7 +90,8 @@ namespace TrackStudyTime
             timeUtil.timeStartP = timeUtil.timeFinish;
             timer2.Enabled = true;
             timer2.Start();
-            //TO-DO: aggiornare listbox
+            pause.Enabled = false;
+            play.Enabled = true;
         }
         void aggiungiMinuto()
         {

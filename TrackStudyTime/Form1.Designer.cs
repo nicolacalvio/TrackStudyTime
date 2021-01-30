@@ -53,6 +53,7 @@ namespace TrackStudyTime
             this.label5 = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.pasto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.obiettivo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pausa)).BeginInit();
             this.panel1.SuspendLayout();
@@ -267,11 +268,22 @@ namespace TrackStudyTime
             this.timer2.Interval = 1000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // pasto
+            // 
+            this.pasto.Location = new System.Drawing.Point(590, 9);
+            this.pasto.Name = "pasto";
+            this.pasto.Size = new System.Drawing.Size(235, 78);
+            this.pasto.TabIndex = 28;
+            this.pasto.Text = "pausa pasto";
+            this.pasto.UseVisualStyleBackColor = true;
+            this.pasto.Click += new System.EventHandler(this.pasto_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 450);
+            this.Controls.Add(this.pasto);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.label4);
@@ -287,6 +299,7 @@ namespace TrackStudyTime
             this.Controls.Add(this.ore);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.obiettivo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pausa)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -321,6 +334,7 @@ namespace TrackStudyTime
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Button pasto;
     }
 }
 
