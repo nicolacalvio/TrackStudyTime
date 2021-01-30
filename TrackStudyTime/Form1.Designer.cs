@@ -42,14 +42,17 @@ namespace TrackStudyTime
             this.pausa = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.minuti = new System.Windows.Forms.Label();
             this.secondi = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.reset = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.obiettivo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pausa)).BeginInit();
             this.panel1.SuspendLayout();
@@ -93,7 +96,7 @@ namespace TrackStudyTime
             this.ore.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ore.Location = new System.Drawing.Point(48, 188);
             this.ore.Name = "ore";
-            this.ore.Size = new System.Drawing.Size(55, 39);
+            this.ore.Size = new System.Drawing.Size(53, 38);
             this.ore.TabIndex = 4;
             this.ore.Text = "00";
             // 
@@ -103,7 +106,7 @@ namespace TrackStudyTime
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(109, 188);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(26, 39);
+            this.label7.Size = new System.Drawing.Size(26, 38);
             this.label7.TabIndex = 8;
             this.label7.Text = ":";
             this.label7.Click += new System.EventHandler(this.label7_Click);
@@ -169,13 +172,22 @@ namespace TrackStudyTime
             this.panel1.Size = new System.Drawing.Size(561, 75);
             this.panel1.TabIndex = 17;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(393, 38);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 17);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "min";
+            // 
             // minuti
             // 
             this.minuti.AutoSize = true;
             this.minuti.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minuti.Location = new System.Drawing.Point(141, 188);
             this.minuti.Name = "minuti";
-            this.minuti.Size = new System.Drawing.Size(55, 39);
+            this.minuti.Size = new System.Drawing.Size(53, 38);
             this.minuti.TabIndex = 18;
             this.minuti.Text = "00";
             // 
@@ -185,7 +197,7 @@ namespace TrackStudyTime
             this.secondi.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.secondi.Location = new System.Drawing.Point(227, 188);
             this.secondi.Name = "secondi";
-            this.secondi.Size = new System.Drawing.Size(55, 39);
+            this.secondi.Size = new System.Drawing.Size(53, 38);
             this.secondi.TabIndex = 19;
             this.secondi.Text = "00";
             this.secondi.Click += new System.EventHandler(this.label5_Click);
@@ -196,18 +208,9 @@ namespace TrackStudyTime
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(202, 188);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(26, 39);
+            this.label8.Size = new System.Drawing.Size(26, 38);
             this.label8.TabIndex = 21;
             this.label8.Text = ":";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(393, 38);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 17);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "min";
             // 
             // reset
             // 
@@ -224,7 +227,7 @@ namespace TrackStudyTime
             this.listBox1.ItemHeight = 16;
             this.listBox1.Location = new System.Drawing.Point(387, 162);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(186, 276);
+            this.listBox1.Size = new System.Drawing.Size(213, 276);
             this.listBox1.TabIndex = 24;
             // 
             // label4
@@ -241,11 +244,36 @@ namespace TrackStudyTime
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(603, 130);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 17);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Durata studio";
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 16;
+            this.listBox2.Location = new System.Drawing.Point(606, 162);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(219, 276);
+            this.listBox2.TabIndex = 26;
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 1000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 450);
+            this.ClientSize = new System.Drawing.Size(878, 450);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.listBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.reset);
@@ -290,6 +318,9 @@ namespace TrackStudyTime
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
