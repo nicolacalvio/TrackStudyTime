@@ -44,7 +44,7 @@ namespace TrackStudyTime
             {
                 timer1.Enabled = true;
                 timer1.Start();
-                timeUtil.timeStart = secondiPassati + (minutiPassati / 60) + ((orePassate / 60) / 60);
+                timeUtil.timeStart = secondiPassati + (minutiPassati * 60) + ((orePassate * 60) * 60);
                 timeUtil.timeFinishP = actualSecs;
                 timer2.Stop();
                 if (countPause != 0)
@@ -69,7 +69,20 @@ namespace TrackStudyTime
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            string[] result = StoreRetriveData.getConfig();
+            if (result != null)
+            {
+                //nome obiettivo max pausa
+                nomeUtente = result[0];
+                obiettivoOre = Convert.ToInt32(result[1]);
+                massimaPausa = Convert.ToInt32(result[2]);
+                nome.Text = nomeUtente;
+                obiettivo.Value = obiettivoOre;
+                pausa.Value = massimaPausa;
+                configurazione = true;
+            }
+            
+            
         }
 
         private void pasto_Click(object sender, EventArgs e)
@@ -83,7 +96,7 @@ namespace TrackStudyTime
         private void pause_Click(object sender, EventArgs e)
         {
             timer1.Stop();
-            timeUtil.timeFinish = secondiPassati + (minutiPassati / 60) + ((orePassate / 60) / 60);
+            timeUtil.timeFinish = secondiPassati + (minutiPassati * 60) + ((orePassate * 60) * 60);
             countStudio++;
             listBox2.Items.Add("#"+Convert.ToString(countStudio) + " " + timeUtil.calcolaDiffTime());
             actualSecs = timeUtil.timeFinish;
@@ -153,7 +166,7 @@ namespace TrackStudyTime
             if(!nomeUtente.Equals("") && obiettivoOre!=0 && massimaPausa != 0)
             {
                 configurazione = true;
-                //TO-DO: scrivere su file i dati della configurazione
+                StoreRetriveData.setData(nomeUtente, obiettivoOre, massimaPausa);
             }
             else
             {
