@@ -19,13 +19,12 @@ namespace TrackStudyTime
         int actualSecs = 0;
         int countPause = 0, countStudio=0;
         TimeUtil timeUtil = new TimeUtil();
-        int tick1 = 0, tick2 = 0;
-
-        //bug: quando il cronometro sta andando non posso schiacciare play
-        //TODO: aggiungere tasto pausa pranzo/cena
         //TODO: aggiungere webserver che traccia il tempo degli amici
         //per stilare una classifica
         //gli amici si possono aggiungere tramite username
+        //TODO: aggiungere sistema di reward in base a quante volte si raggiunge un obiettivo
+        //e a quante volte si battono gli amici
+        //TODO: aggiungere dialog per la conferma della chiusura dell'applicazione
         public Form1()
         {
             InitializeComponent();
@@ -84,6 +83,16 @@ namespace TrackStudyTime
                 pausa.Value = massimaPausa;
                 configurazione = true;
             }
+            string[] tempoSaved = StoreRetriveData.getTempoSeStessoGiorno();
+            if (tempoSaved != null)
+            {
+                secondiPassati = Convert.ToInt32(tempoSaved[0]);
+                minutiPassati = Convert.ToInt32(tempoSaved[1]);
+                orePassate = Convert.ToInt32(tempoSaved[2]);
+                secondi.Text = (secondiPassati < 10) ? "0" + tempoSaved[0] : tempoSaved[0];
+                minuti.Text = (minutiPassati < 10) ? "0" + tempoSaved[1] : tempoSaved[1];
+                ore.Text = (orePassate < 10) ? "0" + tempoSaved[2] : tempoSaved[2];
+            }
             
             
         }
@@ -114,6 +123,12 @@ namespace TrackStudyTime
             pause.Enabled = false;
             play.Enabled = true;
         }
+
+        private void savedata_Click(object sender, EventArgs e)
+        {
+            StoreRetriveData.salvaTempo(Convert.ToString(secondiPassati), Convert.ToString(minutiPassati), Convert.ToString(orePassate));
+        }
+
         void aggiungiMinuto()
         {
             if (minutiPassati == 60)

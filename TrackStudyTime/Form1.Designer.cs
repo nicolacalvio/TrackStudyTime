@@ -46,7 +46,7 @@ namespace TrackStudyTime
             this.minuti = new System.Windows.Forms.Label();
             this.secondi = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.reset = new System.Windows.Forms.Button();
+            this.savedata = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -215,20 +215,21 @@ namespace TrackStudyTime
             this.label8.TabIndex = 21;
             this.label8.Text = ":";
             // 
-            // reset
+            // savedata
             // 
-            this.reset.Location = new System.Drawing.Point(12, 412);
-            this.reset.Name = "reset";
-            this.reset.Size = new System.Drawing.Size(75, 26);
-            this.reset.TabIndex = 23;
-            this.reset.Text = "reset";
-            this.reset.UseVisualStyleBackColor = true;
+            this.savedata.Location = new System.Drawing.Point(10, 412);
+            this.savedata.Name = "savedata";
+            this.savedata.Size = new System.Drawing.Size(84, 26);
+            this.savedata.TabIndex = 23;
+            this.savedata.Text = "Salva dati";
+            this.savedata.UseVisualStyleBackColor = true;
+            this.savedata.Click += new System.EventHandler(this.savedata_Click);
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(387, 162);
+            this.listBox1.Location = new System.Drawing.Point(410, 164);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(213, 276);
             this.listBox1.TabIndex = 24;
@@ -236,7 +237,7 @@ namespace TrackStudyTime
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(384, 130);
+            this.label4.Location = new System.Drawing.Point(407, 132);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(94, 17);
             this.label4.TabIndex = 25;
@@ -250,7 +251,7 @@ namespace TrackStudyTime
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(603, 130);
+            this.label5.Location = new System.Drawing.Point(626, 132);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(93, 17);
             this.label5.TabIndex = 27;
@@ -260,7 +261,7 @@ namespace TrackStudyTime
             // 
             this.listBox2.FormattingEnabled = true;
             this.listBox2.ItemHeight = 16;
-            this.listBox2.Location = new System.Drawing.Point(606, 162);
+            this.listBox2.Location = new System.Drawing.Point(629, 164);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(219, 276);
             this.listBox2.TabIndex = 26;
@@ -283,7 +284,7 @@ namespace TrackStudyTime
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(93, 417);
+            this.label6.Location = new System.Drawing.Point(100, 417);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(169, 17);
             this.label6.TabIndex = 29;
@@ -291,7 +292,7 @@ namespace TrackStudyTime
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(268, 412);
+            this.button1.Location = new System.Drawing.Point(275, 412);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(113, 28);
             this.button1.TabIndex = 30;
@@ -311,7 +312,7 @@ namespace TrackStudyTime
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.reset);
+            this.Controls.Add(this.savedata);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.secondi);
             this.Controls.Add(this.minuti);
@@ -350,7 +351,7 @@ namespace TrackStudyTime
         private System.Windows.Forms.Label secondi;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button reset;
+        private System.Windows.Forms.Button savedata;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer timer1;

@@ -28,5 +28,31 @@ namespace TrackStudyTime
             }
             
         }
+        public static void salvaTempo(string secondi, string minuti, string ore)
+        {
+            File.WriteAllText("time.txt", secondi + ";" + minuti + ";" + ore+";"+DateTime.Now.Day+DateTime.Now.Month);
+        }
+        public static string[] getTempoSeStessoGiorno()
+        {
+            try
+            {
+                string result = File.ReadAllText("time.txt");
+                string[] stringa = result.Split(';');
+                if (stringa[3].Equals(Convert.ToString(DateTime.Now.Day) + Convert.ToString(DateTime.Now.Month)))
+                {
+                    return stringa;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+            
+            
+        }
     }
 }
