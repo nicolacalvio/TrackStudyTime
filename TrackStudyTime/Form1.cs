@@ -23,6 +23,9 @@ namespace TrackStudyTime
 
         //bug: quando il cronometro sta andando non posso schiacciare play
         //TODO: aggiungere tasto pausa pranzo/cena
+        //TODO: aggiungere webserver che traccia il tempo degli amici
+        //per stilare una classifica
+        //gli amici si possono aggiungere tramite username
         public Form1()
         {
             InitializeComponent();
@@ -91,6 +94,11 @@ namespace TrackStudyTime
             pause.Enabled = false;
             timer1.Stop();
             timer2.Stop();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.nicolacalvio.com");
         }
 
         private void pause_Click(object sender, EventArgs e)
