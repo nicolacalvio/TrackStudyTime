@@ -38,7 +38,6 @@ namespace TrackStudyTime
             this.label7 = new System.Windows.Forms.Label();
             this.play = new System.Windows.Forms.Button();
             this.pause = new System.Windows.Forms.Button();
-            this.salva = new System.Windows.Forms.Button();
             this.pausa = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -56,6 +55,9 @@ namespace TrackStudyTime
             this.pasto = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.durataTotaleP = new System.Windows.Forms.Label();
+            this.timePausebtn = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.obiettivo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pausa)).BeginInit();
             this.panel1.SuspendLayout();
@@ -134,16 +136,6 @@ namespace TrackStudyTime
             this.pause.UseVisualStyleBackColor = true;
             this.pause.Click += new System.EventHandler(this.pause_Click);
             // 
-            // salva
-            // 
-            this.salva.Location = new System.Drawing.Point(437, 9);
-            this.salva.Name = "salva";
-            this.salva.Size = new System.Drawing.Size(75, 23);
-            this.salva.TabIndex = 14;
-            this.salva.Text = "Salva";
-            this.salva.UseVisualStyleBackColor = true;
-            this.salva.Click += new System.EventHandler(this.salva_Click);
-            // 
             // pausa
             // 
             this.pausa.Location = new System.Drawing.Point(326, 38);
@@ -162,10 +154,10 @@ namespace TrackStudyTime
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.pausa);
-            this.panel1.Controls.Add(this.salva);
             this.panel1.Controls.Add(this.obiettivo);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.nome);
@@ -251,7 +243,7 @@ namespace TrackStudyTime
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(626, 132);
+            this.label5.Location = new System.Drawing.Point(755, 132);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(93, 17);
             this.label5.TabIndex = 27;
@@ -300,11 +292,42 @@ namespace TrackStudyTime
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // durataTotaleP
+            // 
+            this.durataTotaleP.AutoSize = true;
+            this.durataTotaleP.Location = new System.Drawing.Point(527, 132);
+            this.durataTotaleP.Name = "durataTotaleP";
+            this.durataTotaleP.Size = new System.Drawing.Size(31, 17);
+            this.durataTotaleP.TabIndex = 31;
+            this.durataTotaleP.Text = "00s";
+            // 
+            // timePausebtn
+            // 
+            this.timePausebtn.Location = new System.Drawing.Point(410, 93);
+            this.timePausebtn.Name = "timePausebtn";
+            this.timePausebtn.Size = new System.Drawing.Size(163, 36);
+            this.timePausebtn.TabIndex = 32;
+            this.timePausebtn.Text = "mostra tempo pausa";
+            this.timePausebtn.UseVisualStyleBackColor = true;
+            this.timePausebtn.Click += new System.EventHandler(this.timePausebtn_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(456, 22);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "salva";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 450);
+            this.Controls.Add(this.timePausebtn);
+            this.Controls.Add(this.durataTotaleP);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.pasto);
@@ -343,7 +366,7 @@ namespace TrackStudyTime
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button play;
         private System.Windows.Forms.Button pause;
-        private System.Windows.Forms.Button salva;
+        //private System.Windows.Forms.Button salva;
         private System.Windows.Forms.NumericUpDown pausa;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel1;
@@ -361,6 +384,9 @@ namespace TrackStudyTime
         private System.Windows.Forms.Button pasto;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label durataTotaleP;
+        private System.Windows.Forms.Button timePausebtn;
+        private System.Windows.Forms.Button button2;
     }
 }
 
