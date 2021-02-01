@@ -41,6 +41,7 @@ namespace TrackStudyTime
             this.pausa = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.minuti = new System.Windows.Forms.Label();
             this.secondi = new System.Windows.Forms.Label();
@@ -57,7 +58,9 @@ namespace TrackStudyTime
             this.button1 = new System.Windows.Forms.Button();
             this.durataTotaleP = new System.Windows.Forms.Label();
             this.timePausebtn = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.password = new System.Windows.Forms.TextBox();
+            this.Amici = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.obiettivo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pausa)).BeginInit();
             this.panel1.SuspendLayout();
@@ -154,7 +157,9 @@ namespace TrackStudyTime
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.password);
             this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.label22);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.pausa);
@@ -166,6 +171,16 @@ namespace TrackStudyTime
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(561, 75);
             this.panel1.TabIndex = 17;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(471, 7);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "salva";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label3
             // 
@@ -311,21 +326,39 @@ namespace TrackStudyTime
             this.timePausebtn.UseVisualStyleBackColor = true;
             this.timePausebtn.Click += new System.EventHandler(this.timePausebtn_Click);
             // 
-            // button2
+            // label22
             // 
-            this.button2.Location = new System.Drawing.Point(456, 22);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "salva";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(3, 43);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(73, 17);
+            this.label22.TabIndex = 33;
+            this.label22.Text = "Password:";
+            // 
+            // password
+            // 
+            this.password.Location = new System.Drawing.Point(73, 43);
+            this.password.Name = "password";
+            this.password.PasswordChar = '*';
+            this.password.Size = new System.Drawing.Size(100, 22);
+            this.password.TabIndex = 34;
+            // 
+            // Amici
+            // 
+            this.Amici.Location = new System.Drawing.Point(590, 94);
+            this.Amici.Name = "Amici";
+            this.Amici.Size = new System.Drawing.Size(130, 35);
+            this.Amici.TabIndex = 33;
+            this.Amici.Text = "Gestione Amici";
+            this.Amici.UseVisualStyleBackColor = true;
+            this.Amici.Click += new System.EventHandler(this.Amici_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 450);
+            this.Controls.Add(this.Amici);
             this.Controls.Add(this.timePausebtn);
             this.Controls.Add(this.durataTotaleP);
             this.Controls.Add(this.button1);
@@ -387,6 +420,9 @@ namespace TrackStudyTime
         private System.Windows.Forms.Label durataTotaleP;
         private System.Windows.Forms.Button timePausebtn;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox password;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button Amici;
     }
 }
 

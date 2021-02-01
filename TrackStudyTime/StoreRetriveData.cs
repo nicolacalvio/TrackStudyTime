@@ -9,9 +9,9 @@ namespace TrackStudyTime
 {
     class StoreRetriveData
     {
-        public static void setData(string nome, int obiettivo, int maxPausa)
+        public static void setData(string nome, int obiettivo, int maxPausa, string password)
         {
-            File.WriteAllText("settings.txt", nome + ";" + obiettivo + ";" + maxPausa);
+            File.WriteAllText("settings.txt", nome + ";" + obiettivo + ";" + maxPausa+";"+password);
             
             
         }

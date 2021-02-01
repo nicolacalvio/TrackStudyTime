@@ -14,6 +14,7 @@ namespace TrackStudyTime
     public partial class Form1 : Form
     {
         string nomeUtente;
+        string passwordStore;
         int pausaCont = 0;
         bool pastoP = false;
         int obiettivoOre, massimaPausa;
@@ -101,9 +102,11 @@ namespace TrackStudyTime
                 nomeUtente = result[0];
                 obiettivoOre = Convert.ToInt32(result[1]);
                 massimaPausa = Convert.ToInt32(result[2]);
+                passwordStore = result[3];
                 nome.Text = nomeUtente;
                 obiettivo.Value = obiettivoOre;
                 pausa.Value = massimaPausa;
+                password.Text = passwordStore;
                 configurazione = true;
             }
             string[] tempoSaved = StoreRetriveData.getTempoSeStessoGiorno();
@@ -178,6 +181,7 @@ namespace TrackStudyTime
             {
                 minuti.Text = Convert.ToString(minutiPassati);
             }
+            ConnectionUtil.mandaTempo(nomeUtente, secondiPassati + (minutiPassati * 60) + (minutiPassati * 60) * 60);
 
         }
 
@@ -203,6 +207,20 @@ namespace TrackStudyTime
         private void button2_Click(object sender, EventArgs e)
         {
             salva();
+            //chiama connection util per mandare username e password
+            //che nel caso già esistenti nel server
+            //il server farà login altrimenti creerà un nuovo utente
+            if(!ConnectionUtil.utenteRegistrato(nomeUtente))
+            {
+                ConnectionUtil.registraUtente(nomeUtente, passwordStore);
+            }
+
+        }
+
+        private void Amici_Click(object sender, EventArgs e)
+        {
+            Form2 f = new Form2(nomeUtente);
+            f.Show();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -235,6 +253,7 @@ namespace TrackStudyTime
                 SoundPlayer simpleSound = new SoundPlayer("obiettivo_raggiunto.wav");
                 simpleSound.Play();
             }
+            //ConnectionUtil.mandaTempo(nomeUtente, secondiPassati + (minutiPassati * 60) + (minutiPassati * 60) * 60);
 
 
         }
@@ -243,10 +262,11 @@ namespace TrackStudyTime
             nomeUtente = nome.Text;
             obiettivoOre = Convert.ToInt32(obiettivo.Value);
             massimaPausa = Convert.ToInt32(pausa.Value);
+            passwordStore = password.Text;
             if (!nomeUtente.Equals("") && obiettivoOre != 0 && massimaPausa != 0)
             {
                 configurazione = true;
-                StoreRetriveData.setData(nomeUtente, obiettivoOre, massimaPausa);
+                StoreRetriveData.setData(nomeUtente, obiettivoOre, massimaPausa, passwordStore);
             }
             else
             {

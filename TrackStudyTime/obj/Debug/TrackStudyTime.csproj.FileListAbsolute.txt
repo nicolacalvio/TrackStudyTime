@@ -8,3 +8,4 @@ C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\obj\Debug\TrackStudyT
 C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\obj\Debug\TrackStudyTime.exe
 C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\obj\Debug\TrackStudyTime.pdb
 C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\obj\Debug\TrackStudyTime.Form1.resources
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\obj\Debug\TrackStudyTime.Form2.resources
