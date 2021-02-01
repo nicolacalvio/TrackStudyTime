@@ -14,6 +14,8 @@ namespace TrackStudyTime
     public partial class Form1 : Form
     {
         string nomeUtente;
+        int pausaCont = 0;
+        bool pastoP = false;
         int obiettivoOre, massimaPausa;
         bool configurazione = false;
         int secondiPassati = 0, minutiPassati = 0, orePassate = 0;
@@ -51,17 +53,25 @@ namespace TrackStudyTime
                 timer1.Start();
                 timeUtil.timeStart = secondiPassati + (minutiPassati * 60) + ((orePassate * 60) * 60);
                 timeUtil.timeFinishP = actualSecs;
-                totalePausa += timeUtil.calcolaDiffTimePausaInt();
-                durataTotaleP.Text = TimeUtil.convertSecToTime(totalePausa);
                 timer2.Stop();
-                if (countPause != 0)
+                if (!pastoP)
                 {
-                    listBox1.Items.Add("#" + Convert.ToString(countPause) + " " + timeUtil.calcolaDiffTimePausa());
+
+                    if (countPause != 0)
+                    {
+                        listBox1.Items.Add("#" + Convert.ToString(countPause) + " " + timeUtil.calcolaDiffTimePausa());
+                    }
+                    countPause++;
+                    actualSecsZero = 0;
                 }
-                countPause++;
+                else
+                {
+                    
+                    pastoP = false;
+                }
                 play.Enabled = false;
                 pause.Enabled = true;
-                actualSecsZero = 0;
+                pasto.Enabled = true;
 
             }
             else
@@ -74,12 +84,12 @@ namespace TrackStudyTime
         {
             actualSecs++;
             actualSecsZero++;
+            pausaCont++;
+            durataTotaleP.Text = TimeUtil.convertSecToTime(pausaCont);
             if (AlertTime.pausaExceed(actualSecsZero, massimaPausa*60))
             {
-                //SoundPlayer simpleSound = new SoundPlayer(@"c:\Windows\Media\chimes.wav");
                 SoundPlayer simpleSound = new SoundPlayer("pausa_superata.wav");
                 simpleSound.Play();
-                //TO-DO: implementare suono personalizzato
             }
         }
 
@@ -88,7 +98,6 @@ namespace TrackStudyTime
             string[] result = StoreRetriveData.getConfig();
             if (result != null)
             {
-                //nome obiettivo max pausa
                 nomeUtente = result[0];
                 obiettivoOre = Convert.ToInt32(result[1]);
                 massimaPausa = Convert.ToInt32(result[2]);
@@ -113,10 +122,16 @@ namespace TrackStudyTime
 
         private void pasto_Click(object sender, EventArgs e)
         {
-            play.Enabled = true;
             pause.Enabled = false;
+            pasto.Enabled = false;
+            play.Enabled = true;
             timer1.Stop();
             timer2.Stop();
+            timeUtil.timeFinish = secondiPassati + (minutiPassati * 60) + ((orePassate * 60) * 60);
+            countStudio++;
+            listBox2.Items.Add("#" + Convert.ToString(countStudio) + " " + timeUtil.calcolaDiffTime());
+            actualSecs = timeUtil.timeFinish;
+            pastoP = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -135,6 +150,7 @@ namespace TrackStudyTime
             timer2.Enabled = true;
             timer2.Start();
             pause.Enabled = false;
+            pasto.Enabled = false;
             play.Enabled = true;
         }
 
@@ -211,15 +227,13 @@ namespace TrackStudyTime
             }
             if(AlertTime.trentaMinutiObiettivo(secondiPassati + (minutiPassati * 60) + (orePassate * 60) * 60, (obiettivoOre * 60) * 60))
             {
-                SoundPlayer simpleSound = new SoundPlayer(@"c:\Windows\Media\chimes.wav");
+                SoundPlayer simpleSound = new SoundPlayer("30min.wav");
                 simpleSound.Play();
-                //TO-DO: implementare suono personalizzato
             }
             if (AlertTime.obiettivoRaggiunto(secondiPassati + (minutiPassati * 60) + (orePassate * 60) * 60, (obiettivoOre * 60) * 60))
             {
-                SoundPlayer simpleSound = new SoundPlayer(@"c:\Windows\Media\chimes.wav");
+                SoundPlayer simpleSound = new SoundPlayer("obiettivo_raggiunto.wav");
                 simpleSound.Play();
-                //TO-DO: implementare suono personalizzato
             }
 
 
