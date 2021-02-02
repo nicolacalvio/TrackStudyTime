@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Net.Http;
 using System.IO;
 using System.Net;
+using System.Text.Json;
 
 namespace TrackStudyTime
 {
@@ -84,9 +85,10 @@ namespace TrackStudyTime
                 return false;
             }
         }
-        public static bool mandaTempo(string nome, int tempo)
+        public static bool mandaTempo(string nome, int tempo, string password)
         {
-            if (getRequestAsync("https://www.nicolacalvio.com/api/mandaTempo.php?tempo=", Convert.ToString(tempo) + "&nome=" + nome).Equals("mandato"))
+            password = ComputeSha256Hash(password);
+            if (getRequestAsync("https://www.nicolacalvio.com/api/mandaTempo.php?tempo=", Convert.ToString(tempo) + "&nome=" + nome + "&password="+password).Equals("mandato"))
             {
                 return true;
             }
@@ -95,12 +97,10 @@ namespace TrackStudyTime
                 return false;
             }
         }
-        public static Dictionary<string, int> prendiTempoAmici(string utente)
+        public static string prendiTempoAmici(string utente)
         {
-            string res = getRequestAsync("https://www.nicolacalvio.com/api/getTimeAmico.php?nome=", utente);
-            //TODO: convertire stringa di output in dizionario
-            Console.WriteLine(res);
-            return null;
+            return getRequestAsync("https://www.nicolacalvio.com/api/getTimeAmico.php?nome=", utente);
+
         }
         public static bool aggiungiAmico(string nome, string nomeAmico)
         {

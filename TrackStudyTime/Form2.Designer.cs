@@ -48,12 +48,12 @@ namespace TrackStudyTime
             // 
             this.textBox1.Location = new System.Drawing.Point(66, 13);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.Size = new System.Drawing.Size(146, 22);
             this.textBox1.TabIndex = 1;
             // 
             // aggAmico
             // 
-            this.aggAmico.Location = new System.Drawing.Point(172, 6);
+            this.aggAmico.Location = new System.Drawing.Point(232, 6);
             this.aggAmico.Name = "aggAmico";
             this.aggAmico.Size = new System.Drawing.Size(122, 31);
             this.aggAmico.TabIndex = 2;
@@ -67,14 +67,14 @@ namespace TrackStudyTime
             this.listBox1.ItemHeight = 16;
             this.listBox1.Location = new System.Drawing.Point(6, 68);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(288, 356);
+            this.listBox1.Size = new System.Drawing.Size(348, 356);
             this.listBox1.TabIndex = 3;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 432);
+            this.ClientSize = new System.Drawing.Size(373, 432);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.aggAmico);
             this.Controls.Add(this.textBox1);

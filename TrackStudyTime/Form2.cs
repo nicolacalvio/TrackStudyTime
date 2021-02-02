@@ -20,7 +20,14 @@ namespace TrackStudyTime
         }
         private void refreshFirends()
         {
-            Dictionary<string, int> d = ConnectionUtil.prendiTempoAmici(nomeUtente);
+
+            string res = ConnectionUtil.prendiTempoAmici(nomeUtente);
+            string[] add = res.Split('-');
+            foreach(string temp in add)
+            {
+                listBox1.Items.Add(temp);
+            }
+
         }
         private void Form2_Load(object sender, EventArgs e)
         {

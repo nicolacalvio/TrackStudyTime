@@ -25,12 +25,8 @@ namespace TrackStudyTime
         int countPause = 0, countStudio = 0;
         int totalePausa = 0;
         TimeUtil timeUtil = new TimeUtil();
-        //TODO: aggiungere webserver che traccia il tempo degli amici
-        //per stilare una classifica
-        //gli amici si possono aggiungere tramite username
-        //TODO: aggiungere sistema di reward in base a quante volte si raggiunge un obiettivo
-        //e a quante volte si battono gli amici
-        //TODO: aggiungere dialog per la conferma della chiusura dell'applicazione
+        //TODO: rimuovere salva dati e la funzionalità di ripescare i dati da un file
+        //sostituire quel pulsante con un pulsante recupera dati dal server
         public Form1()
         {
             InitializeComponent();
@@ -181,7 +177,10 @@ namespace TrackStudyTime
             {
                 minuti.Text = Convert.ToString(minutiPassati);
             }
-            ConnectionUtil.mandaTempo(nomeUtente, secondiPassati + (minutiPassati * 60) + (minutiPassati * 60) * 60);
+            if (!ConnectionUtil.mandaTempo(nomeUtente, secondiPassati + (minutiPassati * 60) + (minutiPassati * 60) * 60, passwordStore))
+            {
+                MessageBox.Show("username o password sbagliati");
+            }
 
         }
 
@@ -253,7 +252,7 @@ namespace TrackStudyTime
                 SoundPlayer simpleSound = new SoundPlayer("obiettivo_raggiunto.wav");
                 simpleSound.Play();
             }
-            //ConnectionUtil.mandaTempo(nomeUtente, secondiPassati + (minutiPassati * 60) + (minutiPassati * 60) * 60);
+            
 
 
         }

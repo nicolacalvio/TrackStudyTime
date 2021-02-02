@@ -9,3 +9,16 @@ C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\obj\Debug\TrackStudyT
 C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\obj\Debug\TrackStudyTime.pdb
 C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\obj\Debug\TrackStudyTime.Form1.resources
 C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\obj\Debug\TrackStudyTime.Form2.resources
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\System.Buffers.dll
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\System.Memory.dll
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\System.Text.Json.dll
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\System.Buffers.xml
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\System.Memory.xml
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\obj\Debug\TrackStudyTime.csproj.CopyComplete
