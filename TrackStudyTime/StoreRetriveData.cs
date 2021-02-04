@@ -9,9 +9,9 @@ namespace TrackStudyTime
 {
     class StoreRetriveData
     {
-        public static void setData(string nome, int obiettivo, int maxPausa, string password)
+        public static void setData(string nome, int obiettivo, int maxPausa, string password, string mail)
         {
-            File.WriteAllText("settings.txt", nome + ";" + obiettivo + ";" + maxPausa+";"+password);
+            File.WriteAllText("settings.txt", nome + ";" + obiettivo + ";" + maxPausa+";"+password+";"+mail);
             
             
         }
@@ -28,6 +28,7 @@ namespace TrackStudyTime
             }
             
         }
+        /*
         public static void salvaTempo(string secondi, string minuti, string ore)
         {
             File.WriteAllText("time.txt", secondi + ";" + minuti + ";" + ore+";"+DateTime.Now.Day+DateTime.Now.Month);
@@ -54,5 +55,6 @@ namespace TrackStudyTime
             
             
         }
+        */
     }
 }

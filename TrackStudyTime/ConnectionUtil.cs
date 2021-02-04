@@ -73,10 +73,10 @@ namespace TrackStudyTime
                 return false;
             }
         }
-        public static bool registraUtente(string nome, string password)
+        public static bool registraUtente(string nome, string password, string mail)
         {
             password = ComputeSha256Hash(password);
-            if (getRequestAsync("https://www.nicolacalvio.com/api/registraUtente.php?nome=", nome + "&password=" + password).Equals("registrato"))
+            if (getRequestAsync("https://www.nicolacalvio.com/api/registraUtente.php?nome=", nome + "&password=" + password + "&mail="+mail).Equals("registrato"))
             {
                 return true;
             }
@@ -112,6 +112,17 @@ namespace TrackStudyTime
             {
                 return false;
             }
+        }
+        public static string getTempoSeStessoGiorno(string nome)
+        {
+            //TODO: implementare
+            //ritorna secondi minuti ore in questo ordine con un ; in mezzo
+            return null;
+        }
+        public static bool mandaMail(string nome, string email, string massimaPausa)
+        {
+            //TODO: da implementare
+            return true;
         }
     }
 }

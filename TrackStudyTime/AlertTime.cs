@@ -10,7 +10,7 @@ namespace TrackStudyTime
     {
         public static bool trentaMinutiObiettivo(int tempo, int obiettivo)
         {
-            return (obiettivo - tempo <= 1800) ? true : false;
+            return (obiettivo - tempo == 1800) ? true : false;
         }
         public static bool obiettivoRaggiunto(int tempo, int obiettivo)
         {

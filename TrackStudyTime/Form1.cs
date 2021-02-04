@@ -13,8 +13,10 @@ namespace TrackStudyTime
 {
     public partial class Form1 : Form
     {
+        /* inizializzazione delle variabili necessarie */
         string nomeUtente;
         string passwordStore;
+        string email;
         int pausaCont = 0;
         bool pastoP = false;
         int obiettivoOre, massimaPausa;
@@ -25,8 +27,8 @@ namespace TrackStudyTime
         int countPause = 0, countStudio = 0;
         int totalePausa = 0;
         TimeUtil timeUtil = new TimeUtil();
-        //TODO: rimuovere salva dati e la funzionalità di ripescare i dati da un file
-        //sostituire quel pulsante con un pulsante recupera dati dal server
+        //TODO: aggiungere label che indica da quanto tempo sono in pausa
+        //TODO: aggiungere php per prendere i dati ed elaborarli per mostrarli come grafico
         public Form1()
         {
             InitializeComponent();
@@ -87,6 +89,7 @@ namespace TrackStudyTime
             {
                 SoundPlayer simpleSound = new SoundPlayer("pausa_superata.wav");
                 simpleSound.Play();
+                ConnectionUtil.mandaMail(nomeUtente, email, Convert.ToString(massimaPausa));
             }
         }
 
@@ -99,15 +102,19 @@ namespace TrackStudyTime
                 obiettivoOre = Convert.ToInt32(result[1]);
                 massimaPausa = Convert.ToInt32(result[2]);
                 passwordStore = result[3];
+                email = textBoxEmail.Text;
                 nome.Text = nomeUtente;
                 obiettivo.Value = obiettivoOre;
                 pausa.Value = massimaPausa;
                 password.Text = passwordStore;
                 configurazione = true;
             }
-            string[] tempoSaved = StoreRetriveData.getTempoSeStessoGiorno();
+            string tempoRisultante = ConnectionUtil.getTempoSeStessoGiorno(nomeUtente);
+            string[] tempoSaved = tempoRisultante.Split(';');
+
             if (tempoSaved != null)
             {
+                //TODO: da verificare e qui c'è davvero bisogno di questo
                 secondiPassati = Convert.ToInt32(tempoSaved[0]);
                 minutiPassati = Convert.ToInt32(tempoSaved[1]);
                 orePassate = Convert.ToInt32(tempoSaved[2]);
@@ -153,14 +160,10 @@ namespace TrackStudyTime
             play.Enabled = true;
         }
 
-        private void savedata_Click(object sender, EventArgs e)
-        {
-            StoreRetriveData.salvaTempo(Convert.ToString(secondiPassati), Convert.ToString(minutiPassati), Convert.ToString(orePassate));
-        }
 
         void aggiungiMinuto()
         {
-            if (minutiPassati == 60)
+            if (minutiPassati == 59)
             {
                 minutiPassati = 0;
                 aggiungiOra();
@@ -177,7 +180,7 @@ namespace TrackStudyTime
             {
                 minuti.Text = Convert.ToString(minutiPassati);
             }
-            if (!ConnectionUtil.mandaTempo(nomeUtente, secondiPassati + (minutiPassati * 60) + (minutiPassati * 60) * 60, passwordStore))
+            if (!ConnectionUtil.mandaTempo(nomeUtente, secondiPassati + (minutiPassati * 60) + (orePassate * 60) * 60, passwordStore))
             {
                 MessageBox.Show("username o password sbagliati");
             }
@@ -211,7 +214,7 @@ namespace TrackStudyTime
             //il server farà login altrimenti creerà un nuovo utente
             if(!ConnectionUtil.utenteRegistrato(nomeUtente))
             {
-                ConnectionUtil.registraUtente(nomeUtente, passwordStore);
+                ConnectionUtil.registraUtente(nomeUtente, passwordStore, email);
             }
 
         }
@@ -222,10 +225,15 @@ namespace TrackStudyTime
             f.Show();
         }
 
+        private void showGrafico_Click(object sender, EventArgs e)
+        {
+            //TODO: mostrare un form con il grafico generato
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
 
-            if (secondiPassati == 60)
+            if (secondiPassati == 59)
             {
                 secondiPassati = 0;
                 aggiungiMinuto();
@@ -265,7 +273,7 @@ namespace TrackStudyTime
             if (!nomeUtente.Equals("") && obiettivoOre != 0 && massimaPausa != 0)
             {
                 configurazione = true;
-                StoreRetriveData.setData(nomeUtente, obiettivoOre, massimaPausa, passwordStore);
+                StoreRetriveData.setData(nomeUtente, obiettivoOre, massimaPausa, passwordStore, email);
             }
             else
             {
