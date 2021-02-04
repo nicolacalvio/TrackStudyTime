@@ -89,7 +89,10 @@ namespace TrackStudyTime
             {
                 SoundPlayer simpleSound = new SoundPlayer("pausa_superata.wav");
                 simpleSound.Play();
-                ConnectionUtil.mandaMail(nomeUtente, email, Convert.ToString(massimaPausa));
+                if(ConnectionUtil.mandaMail(nomeUtente, email, Convert.ToString(massimaPausa)))
+                {
+                    Console.WriteLine("email inviata");
+                }
             }
         }
 
@@ -102,26 +105,28 @@ namespace TrackStudyTime
                 obiettivoOre = Convert.ToInt32(result[1]);
                 massimaPausa = Convert.ToInt32(result[2]);
                 passwordStore = result[3];
-                email = textBoxEmail.Text;
+                email = result[4];
+                textBoxEmail.Text = email;
                 nome.Text = nomeUtente;
                 obiettivo.Value = obiettivoOre;
                 pausa.Value = massimaPausa;
                 password.Text = passwordStore;
                 configurazione = true;
-            }
-            string tempoRisultante = ConnectionUtil.getTempoSeStessoGiorno(nomeUtente);
-            string[] tempoSaved = tempoRisultante.Split(';');
+                string tempoRisultante = ConnectionUtil.getTempoSeStessoGiorno(nomeUtente);
+                string[] tempoSaved = tempoRisultante.Split(':');
 
-            if (tempoSaved != null)
-            {
-                //TODO: da verificare e qui c'è davvero bisogno di questo
-                secondiPassati = Convert.ToInt32(tempoSaved[0]);
-                minutiPassati = Convert.ToInt32(tempoSaved[1]);
-                orePassate = Convert.ToInt32(tempoSaved[2]);
-                secondi.Text = (secondiPassati < 10) ? "0" + tempoSaved[0] : tempoSaved[0];
-                minuti.Text = (minutiPassati < 10) ? "0" + tempoSaved[1] : tempoSaved[1];
-                ore.Text = (orePassate < 10) ? "0" + tempoSaved[2] : tempoSaved[2];
+                if (tempoSaved != null)
+                {
+                    //TODO: da verificare e qui c'è davvero bisogno di questo
+                    secondiPassati = Convert.ToInt32(tempoSaved[2]);
+                    minutiPassati = Convert.ToInt32(tempoSaved[1]);
+                    orePassate = Convert.ToInt32(tempoSaved[0]);
+                    secondi.Text = tempoSaved[2];
+                    minuti.Text = tempoSaved[1];
+                    ore.Text = tempoSaved[0];
+                }
             }
+            
 
 
         }
@@ -270,6 +275,7 @@ namespace TrackStudyTime
             obiettivoOre = Convert.ToInt32(obiettivo.Value);
             massimaPausa = Convert.ToInt32(pausa.Value);
             passwordStore = password.Text;
+            email = textBoxEmail.Text;
             if (!nomeUtente.Equals("") && obiettivoOre != 0 && massimaPausa != 0)
             {
                 configurazione = true;

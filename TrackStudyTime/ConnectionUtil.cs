@@ -105,24 +105,24 @@ namespace TrackStudyTime
         public static bool aggiungiAmico(string nome, string nomeAmico)
         {
            if (getRequestAsync("https://www.nicolacalvio.com/api/aggiungiAmico.php?nome=", nome + "&nomeAmico=" + nomeAmico).Equals("aggiunto"))
-            {
+           {
                 return true;
-            }
-            else
-            {
+           }
+           else
+           {
                 return false;
-            }
+           }
         }
         public static string getTempoSeStessoGiorno(string nome)
         {
-            //TODO: implementare
-            //ritorna secondi minuti ore in questo ordine con un ; in mezzo
-            return null;
+            return getRequestAsync("https://www.nicolacalvio.com/api/getTime.php?nome=", nome);
         }
         public static bool mandaMail(string nome, string email, string massimaPausa)
         {
-            //TODO: da implementare
-            return true;
+            if (getRequestAsync("https://www.nicolacalvio.com/api/mandaEmail.php?nome=", nome + "&email=" + email + "&pausa=" + massimaPausa).Equals("mandato"))
+                return true;
+            else
+                return false;
         }
     }
 }
