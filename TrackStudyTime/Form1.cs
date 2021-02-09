@@ -83,6 +83,7 @@ namespace TrackStudyTime
         {
             actualSecs++;
             actualSecsZero++;
+            pausaAttualeLabel.Text = TimeUtil.convertSecToTime(actualSecsZero);
             pausaCont++;
             durataTotaleP.Text = TimeUtil.convertSecToTime(pausaCont);
             if (AlertTime.pausaExceed(actualSecsZero, massimaPausa*60))
@@ -117,13 +118,16 @@ namespace TrackStudyTime
 
                 if (tempoSaved != null)
                 {
-                    //TODO: da verificare e qui c'è davvero bisogno di questo
-                    secondiPassati = Convert.ToInt32(tempoSaved[2]);
-                    minutiPassati = Convert.ToInt32(tempoSaved[1]);
-                    orePassate = Convert.ToInt32(tempoSaved[0]);
-                    secondi.Text = tempoSaved[2];
-                    minuti.Text = tempoSaved[1];
-                    ore.Text = tempoSaved[0];
+                    if (tempoSaved.Length>1)
+                    {
+                        secondiPassati = Convert.ToInt32(tempoSaved[2]);
+                        minutiPassati = Convert.ToInt32(tempoSaved[1]);
+                        orePassate = Convert.ToInt32(tempoSaved[0]);
+                        secondi.Text = tempoSaved[2];
+                        minuti.Text = tempoSaved[1];
+                        ore.Text = tempoSaved[0];
+                    }
+                    
                 }
             }
             
@@ -204,10 +208,12 @@ namespace TrackStudyTime
             if (durataTotaleP.Visible)
             {
                 durataTotaleP.Visible = false;
+                pausaAttualeLabel.Visible = false;
             }
             else
             {
                 durataTotaleP.Visible = true;
+                pausaAttualeLabel.Visible = true;
             }
         }
 
@@ -233,6 +239,10 @@ namespace TrackStudyTime
         private void showGrafico_Click(object sender, EventArgs e)
         {
             //TODO: mostrare un form con il grafico generato
+            Form3 ff = new Form3();
+            ff.nomeUtente = nomeUtente;
+            ff.Show();
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)

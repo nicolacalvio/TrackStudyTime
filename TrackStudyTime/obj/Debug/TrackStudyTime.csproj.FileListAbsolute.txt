@@ -22,3 +22,4 @@ C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\System.Memo
 C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\obj\Debug\TrackStudyTime.csproj.CopyComplete
+C:\Users\nicola\source\repos\TrackStudyTime\TrackStudyTime\obj\Debug\TrackStudyTime.Form3.resources
