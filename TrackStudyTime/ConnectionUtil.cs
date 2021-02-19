@@ -124,17 +124,17 @@ namespace TrackStudyTime
             else
                 return false;
         }
-        public static Tuple<string, int>[] prendiInfoGrafico(string nomeUtente)
+        public static Tuple<string, double>[] prendiInfoGrafico(string nomeUtente)
         {
            
             //01/02/2021;3960-02/02/2021;5000
             string result = getRequestAsync("https://www.nicolacalvio.com/api/prendiGrafico.php?nome=", nomeUtente);
             string[] dati = result.Split('-');
-            Tuple<string, int>[] tuplaArray = new Tuple<string, int>[dati.Length - 1];
+            Tuple<string, double>[] tuplaArray = new Tuple<string, double>[dati.Length - 1];
             for (int i = 0; i < dati.Length-1; i++)
             {
                 string[] temp = dati[i].Split(';');
-                tuplaArray[i] = new Tuple<string, int>(temp[0], (Convert.ToInt32(temp[1])/60)/60);
+                tuplaArray[i] = new Tuple<string, double>(temp[0], (Convert.ToDouble(temp[1])/60)/60);
             }
             return tuplaArray;
         }
