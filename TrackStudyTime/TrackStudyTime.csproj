@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="AlertTime.cs" />
     <Compile Include="ConnectionUtil.cs" />
+    <Compile Include="DateUtil.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

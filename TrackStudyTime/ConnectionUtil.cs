@@ -124,19 +124,26 @@ namespace TrackStudyTime
             else
                 return false;
         }
-        public static Tuple<string, double>[] prendiInfoGrafico(string nomeUtente)
+        public static Tuple<string, double>[] prendiInfoGrafico(string nomeUtente, string partenza, string finale)
         {
            
             //01/02/2021;3960-02/02/2021;5000
-            string result = getRequestAsync("https://www.nicolacalvio.com/api/prendiGrafico.php?nome=", nomeUtente);
-            string[] dati = result.Split('-');
+            string result = getRequestAsync("https://www.nicolacalvio.com/api/prendiGrafico.php?nome=", nomeUtente + "&partenza=" + partenza + "&finale="+ finale);
+            string[] dati = result.Split('*');
             Tuple<string, double>[] tuplaArray = new Tuple<string, double>[dati.Length - 1];
             for (int i = 0; i < dati.Length-1; i++)
             {
                 string[] temp = dati[i].Split(';');
-                tuplaArray[i] = new Tuple<string, double>(temp[0], (Convert.ToDouble(temp[1])/60)/60);
+                tuplaArray[i] = new Tuple<string, double>(DateUtil.convertiInFormatoIta(temp[0]), (Convert.ToDouble(temp[1])/60)/60);
             }
             return tuplaArray;
+        }
+        public static string[] returnStats(string nomeUtente, string partenza, string finale)
+        {
+            string result = getRequestAsync("https://www.nicolacalvio.com/api/returnStats.php?nome=", nomeUtente + "&partenza=" + partenza + "&finale=" + finale);
+            string[] dati = result.Split(';');
+            //[0]sum [1]avg
+            return dati;
         }
     }
 }

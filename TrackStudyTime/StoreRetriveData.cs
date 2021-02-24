@@ -12,7 +12,27 @@ namespace TrackStudyTime
         public static void setData(string nome, int obiettivo, int maxPausa, string password, string mail)
         {
             File.WriteAllText("settings.txt", nome + ";" + obiettivo + ";" + maxPausa+";"+password+";"+mail);
-            
+        }
+        public static void settinggGrafico(string partenza, string finale)
+        {
+            File.WriteAllText("grafico.txt", partenza + ";" + finale);
+        }
+        public static DateTime[] getGrafico()
+        {
+            try
+            {
+                string[] res=File.ReadAllText("grafico.txt").Split(';');
+                string[] iniziale = res[0].Split('-');
+                string[] arrivo = res[1].Split('-');
+                DateTime[] finale = new DateTime[2];
+                finale[0] = new DateTime(Convert.ToInt32(iniziale[0]), Convert.ToInt32(iniziale[1]), Convert.ToInt32(iniziale[2]));
+                finale[1] = new DateTime(Convert.ToInt32(arrivo[0]), Convert.ToInt32(arrivo[1]), Convert.ToInt32(arrivo[2]));
+                return finale;
+            }
+            catch
+            {
+                return null;
+            }
             
         }
         public static string[] getConfig()
@@ -28,33 +48,5 @@ namespace TrackStudyTime
             }
             
         }
-        /*
-        public static void salvaTempo(string secondi, string minuti, string ore)
-        {
-            File.WriteAllText("time.txt", secondi + ";" + minuti + ";" + ore+";"+DateTime.Now.Day+DateTime.Now.Month);
-        }
-        public static string[] getTempoSeStessoGiorno()
-        {
-            try
-            {
-                string result = File.ReadAllText("time.txt");
-                string[] stringa = result.Split(';');
-                if (stringa[3].Equals(Convert.ToString(DateTime.Now.Day) + Convert.ToString(DateTime.Now.Month)))
-                {
-                    return stringa;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch
-            {
-                return null;
-            }
-            
-            
-        }
-        */
     }
 }

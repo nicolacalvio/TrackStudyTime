@@ -18,16 +18,39 @@ namespace TrackStudyTime
             InitializeComponent();
         }
         public string nomeUtente;
-        private void Form3_Load(object sender, EventArgs e)
+        private void generaGrafico()
         {
             Tuple<string, double>[] tuplaArray;
-            tuplaArray = ConnectionUtil.prendiInfoGrafico(nomeUtente);
-            
-            for(int i = 0; i < tuplaArray.Length; i++)
+            tuplaArray = ConnectionUtil.prendiInfoGrafico(nomeUtente, dateTimePicker1.Value.ToString("yyyy-MM-dd"), dateTimePicker2.Value.ToString("yyyy-MM-dd"));
+            for (int i = 0; i < tuplaArray.Length; i++)
             {
                 chart1.Series["Ore_studio"].Points.AddXY(tuplaArray[i].Item1, tuplaArray[i].Item2);
             }
             chart1.ChartAreas[0].AxisX.Interval = 1;
+        }
+        private void generaStatistiche()
+        {
+            //ore totali label6
+            //media giornaliera label 8
+            string[] stats = ConnectionUtil.returnStats(nomeUtente, dateTimePicker1.Value.ToString("yyyy-MM-dd"), dateTimePicker2.Value.ToString("yyyy-MM-dd"));
+            label6.Text = Convert.ToString(Convert.ToInt32(stats[0])/60/60);
+            label8.Text = stats[1];
+        }
+        private void Form3_Load(object sender, EventArgs e)
+        {
+            DateTime[] res = StoreRetriveData.getGrafico();
+            if ( res != null)
+            {
+                dateTimePicker1.Value = res[0];
+                dateTimePicker2.Value = res[1];
+                generaGrafico();
+                generaStatistiche();
+            }
+            else
+            {
+                MessageBox.Show("compila le date");
+            }
+            
         }
 
         private void chart1_Click(object sender, EventArgs e)
@@ -45,6 +68,17 @@ namespace TrackStudyTime
             {
                 chart1.Series["Ore_studio"].ChartType = SeriesChartType.Spline;
             }
+        }
+        private void resetGrafico()
+        {
+            chart1.Series["Ore_studio"].Points.Clear();
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            StoreRetriveData.settinggGrafico(dateTimePicker1.Value.ToString("yyyy-MM-dd"), dateTimePicker2.Value.ToString("yyyy-MM-dd"));
+            resetGrafico();
+            generaGrafico();
+            generaStatistiche();
         }
     }
 }
