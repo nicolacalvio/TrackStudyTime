@@ -35,14 +35,16 @@ namespace TrackStudyTime
             string[] stats = ConnectionUtil.returnStats(nomeUtente, dateTimePicker1.Value.ToString("yyyy-MM-dd"), dateTimePicker2.Value.ToString("yyyy-MM-dd"));
             label6.Text = Convert.ToString(Convert.ToInt32(stats[0])/60/60);
             label8.Text = stats[1];
+            label11.Text = stats[2];
         }
         private void Form3_Load(object sender, EventArgs e)
         {
+            dateTimePicker2.Value = DateTime.Now;
             DateTime[] res = StoreRetriveData.getGrafico();
             if ( res != null)
             {
                 dateTimePicker1.Value = res[0];
-                dateTimePicker2.Value = res[1];
+                //dateTimePicker2.Value = res[1];
                 generaGrafico();
                 generaStatistiche();
             }
