@@ -14,7 +14,7 @@ namespace TrackStudyTime
     class ConnectionUtil
     {
         private static readonly HttpClient client = new HttpClient();
-        static string getRequestAsync(string url, string values)
+        static async Task<string> getRequestAsync(string url, string values)
         {
             /*
             string postData = "This is a test that posts this string to a Web server.";
@@ -63,7 +63,7 @@ namespace TrackStudyTime
         }
         public static bool utenteRegistrato(string nome)
         {
-            string result = getRequestAsync("https://www.nicolacalvio.com/api/utenteRegistrato.php?nome=", nome);
+            string result = getRequestAsync("https://www.nicolacalvio.com/api/utenteRegistrato.php?nome=", nome).Result;
             if (result.Equals("registrato"))
             {
                 return true;
@@ -76,7 +76,7 @@ namespace TrackStudyTime
         public static bool registraUtente(string nome, string password, string mail)
         {
             password = ComputeSha256Hash(password);
-            if (getRequestAsync("https://www.nicolacalvio.com/api/registraUtente.php?nome=", nome + "&password=" + password + "&mail="+mail).Equals("registrato"))
+            if (getRequestAsync("https://www.nicolacalvio.com/api/registraUtente.php?nome=", nome + "&password=" + password + "&mail="+mail).Result.Equals("registrato"))
             {
                 return true;
             }
@@ -88,7 +88,7 @@ namespace TrackStudyTime
         public static bool mandaTempo(string nome, int tempo, string password)
         {
             password = ComputeSha256Hash(password);
-            if (getRequestAsync("https://www.nicolacalvio.com/api/mandaTempo.php?tempo=", Convert.ToString(tempo) + "&nome=" + nome + "&password="+password).Equals("mandato"))
+            if (getRequestAsync("https://www.nicolacalvio.com/api/mandaTempo.php?tempo=", Convert.ToString(tempo) + "&nome=" + nome + "&password="+password).Result.Equals("mandato"))
             {
                 return true;
             }
@@ -99,12 +99,12 @@ namespace TrackStudyTime
         }
         public static string prendiTempoAmici(string utente)
         {
-            return getRequestAsync("https://www.nicolacalvio.com/api/getTimeAmico.php?nome=", utente);
+            return getRequestAsync("https://www.nicolacalvio.com/api/getTimeAmico.php?nome=", utente).Result;
 
         }
         public static bool aggiungiAmico(string nome, string nomeAmico)
         {
-           if (getRequestAsync("https://www.nicolacalvio.com/api/aggiungiAmico.php?nome=", nome + "&nomeAmico=" + nomeAmico).Equals("aggiunto"))
+           if (getRequestAsync("https://www.nicolacalvio.com/api/aggiungiAmico.php?nome=", nome + "&nomeAmico=" + nomeAmico).Result.Equals("aggiunto"))
            {
                 return true;
            }
@@ -115,11 +115,11 @@ namespace TrackStudyTime
         }
         public static string getTempoSeStessoGiorno(string nome)
         {
-            return getRequestAsync("https://www.nicolacalvio.com/api/getTime.php?nome=", nome);
+            return getRequestAsync("https://www.nicolacalvio.com/api/getTime.php?nome=", nome).Result;
         }
         public static bool mandaMail(string nome, string email, string massimaPausa)
         {
-            if (getRequestAsync("https://www.nicolacalvio.com/api/mandaEmail.php?nome=", nome + "&email=" + email + "&pausa=" + massimaPausa).Equals("mandato"))
+            if (getRequestAsync("https://www.nicolacalvio.com/api/mandaEmail.php?nome=", nome + "&email=" + email + "&pausa=" + massimaPausa).Result.Equals("mandato"))
                 return true;
             else
                 return false;
@@ -128,7 +128,7 @@ namespace TrackStudyTime
         {
            
             //01/02/2021;3960-02/02/2021;5000
-            string result = getRequestAsync("https://www.nicolacalvio.com/api/prendiGrafico.php?nome=", nomeUtente + "&partenza=" + partenza + "&finale="+ finale);
+            string result = getRequestAsync("https://www.nicolacalvio.com/api/prendiGrafico.php?nome=", nomeUtente + "&partenza=" + partenza + "&finale="+ finale).Result;
             string[] dati = result.Split('*');
             Tuple<string, double>[] tuplaArray = new Tuple<string, double>[dati.Length - 1];
             for (int i = 0; i < dati.Length-1; i++)
@@ -140,7 +140,7 @@ namespace TrackStudyTime
         }
         public static string[] returnStats(string nomeUtente, string partenza, string finale)
         {
-            string result = getRequestAsync("https://www.nicolacalvio.com/api/returnStats.php?nome=", nomeUtente + "&partenza=" + partenza + "&finale=" + finale);
+            string result = getRequestAsync("https://www.nicolacalvio.com/api/returnStats.php?nome=", nomeUtente + "&partenza=" + partenza + "&finale=" + finale).Result;
             string[] dati = result.Split(';');
             //[0]sum [1]avg
             return dati;
