@@ -186,11 +186,11 @@ namespace TrackStudyTime
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1328, 481);
+            this.label9.Location = new System.Drawing.Point(1329, 495);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(292, 34);
+            this.label9.Size = new System.Drawing.Size(276, 17);
             this.label9.TabIndex = 13;
-            this.label9.Text = "STATISTICHE DAL GIORNO SELEZIONATO \r\nFINO AD OGGI COMPRESI I GIORNI VUOTI";
+            this.label9.Text = "STATISTICHE COMPRESI I GIORNI VUOTI";
             // 
             // label10
             // 

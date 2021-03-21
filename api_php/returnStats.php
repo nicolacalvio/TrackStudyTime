@@ -4,8 +4,8 @@ $mysqli = new mysqli($configdb["db_host"],$configdb["db_user"],$configdb["db_pas
 $nomeUtente = $_GET['nome'];
 $dataPartenza = $_GET['partenza'];
 $dataFinale = $_GET['finale'];
-$sql = $mysqli->prepare("select sum(tempo_studio), avg(tempo_studio), (sum(tempo_studio)/DATEDIFF(CURDATE(),?)) from tempi where utente=? and dataInserimento between ? and ? ");
-$sql ->bind_param("ssss", $dataPartenza,$nomeUtente, $dataPartenza, $dataFinale);
+$sql = $mysqli->prepare("select sum(tempo_studio), avg(tempo_studio), (sum(tempo_studio)/(DATEDIFF(?,?)+1)) from tempi where utente=? and dataInserimento between ? and ? ");
+$sql ->bind_param("sssss",$dataFinale, $dataPartenza,$nomeUtente, $dataPartenza, $dataFinale);
 $sql->execute();
 $result = $sql->get_result();
 if ($result) {
